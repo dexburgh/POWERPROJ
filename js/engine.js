@@ -1,4 +1,4 @@
-// js/engine.js
+// js/engine.js - Core Scoring Logic
 const TRAITS = {
     intelligence: 0, leadership: 0, empathy: 0, creativity: 0, 
     discipline: 0, control: 0, chaos: 0, justice: 0, 
@@ -29,5 +29,10 @@ function finishQuiz() {
     
     document.getElementById("quizScreen").classList.remove("active");
     document.getElementById("analysisScreen").classList.add("active");
-    runAnalysis(profile);
+    
+    if (typeof runAnalysis === 'function') {
+        runAnalysis(profile);
+    } else {
+        console.error("Critical: runAnalysis function not found.");
+    }
 }
